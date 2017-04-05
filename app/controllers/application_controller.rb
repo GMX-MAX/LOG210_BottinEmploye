@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
 
 	def get_user_info
    		@user_role = "Coordonnateur"
-   		@user_id = "1"
+   		@user_id = 1
 	end
 end
