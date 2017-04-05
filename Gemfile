@@ -13,13 +13,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'devise'
+#gem 'devise'
 
-gem 'devise_token_auth'
+#gem 'devise_token_auth'
 
-gem 'doorkeeper'
+#gem 'doorkeeper'
 
-gem 'omniauth-oauth2', '~> 1.3.1'
+#gem 'omniauth-oauth2', '~> 1.3.1'
 
 gem 'rails_admin'
 
