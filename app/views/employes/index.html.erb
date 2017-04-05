@@ -17,10 +17,14 @@
       <tr>
         <td><%= employe.nom %></td>
         <td><%= employe.prenom %></td>
-        <td><%= Role.where(id: employe.role_id).pluck(:role, :id) %></td>
+        <td><%= Role.find(employe.role_id).role %></td>
         <td><%= link_to 'Show', employe %></td>
-        <td><%= link_to 'Edit', edit_employe_path(employe) %></td>
-        <td><%= link_to 'Destroy', employe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @user_role == "Directeur" || @user_role == "Coordonnateur" || @user_id == employe.id %>
+          <td><%= link_to 'Edit', edit_employe_path(employe) %></td>
+        <% end %>
+        <% if @user_role == "Directeur" || @user_role == "Coordonnateur" %>
+          <td><%= link_to 'Destroy', employe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -28,5 +32,7 @@
 
 <br>
 
-<%= link_to 'Nouvel employe', new_employe_path(:organisme_id => @api_id) %>
+<% if @user_role == "Directeur" || @user_role == "Coordonnateur" %>
+  <%= link_to 'Nouvel employe', new_employe_path(:organisme_id => @api_id) %>
+<% end %>
 <%= link_to 'Back', '/welcome/index' %>

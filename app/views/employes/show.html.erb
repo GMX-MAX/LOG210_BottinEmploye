@@ -42,12 +42,12 @@
 
 <p>
   <strong>Role:</strong>
-  <%= Role.where(:id => @employe.role_id).pluck(:role) %>
+  <%= Role.where(id: @employe.role_id).first.role %>
 </p>
 
 <p>
   <strong>Organisme:</strong>
-  <%= Organisme.where(:api_id => @employe.organisme_id).pluck(:nom) %>
+  <%= Organisme.where(api_id: @employe.organisme_id).last.nom %>
 </p>
 
 <%= link_to 'Edit', edit_employe_path(@employe) %> |

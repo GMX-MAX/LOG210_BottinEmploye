@@ -46,10 +46,16 @@
   <div class="field">
     <%= f.hidden_field :organisme_id, :value => @api_id %>
   </div>
-  <div class="field">
+
+  <% if @user_role == "Directeur" %>
+    <div class="field">
+      <%= f.label :role_id %><br>
+      <%= f.collection_select :role_id, Role.all, :id, :role, :include_blank => true %>
+    </div>
+  <% else %>
     <%= f.label :role_id %><br>
-    <%= f.collection_select :role_id, Role.all, :id, :role, :include_blank => true %>
-  </div>
+    <%= f.collection_select :role_id, Role.where.not(role: "Directeur"), :id, :role, :include_blank => true %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

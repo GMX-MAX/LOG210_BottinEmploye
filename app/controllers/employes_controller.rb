@@ -1,9 +1,15 @@
+require "net/http"
+require "uri"
+
 class EmployesController < ApplicationController
   before_action :set_employe, only: [:show, :edit, :update, :destroy]
 
   # GET /employes
   # GET /employes.json
   def index
+
+    #@user_role = params[:user_role]
+    #@user_id = params[:user_id]
 
     if params[:api_id]
       @api_id = params[:api_id]
@@ -29,6 +35,7 @@ class EmployesController < ApplicationController
 
   # GET /employes/1/edit
   def edit
+    @api_id = @employe.organisme_id
   end
 
   # POST /employes
@@ -38,6 +45,18 @@ class EmployesController < ApplicationController
 
     respond_to do |format|
       if @employe.save!
+        
+        params = {:nom => @employe.nom, :email => @employe.courriel, :password => "password", :role => Role.where(id: @employe.role_id).first.role}
+        uri = URI.parse("http://fierce-earth-91666.herokuapp.com/usagers/sign_up")
+        http = Net::HTTP.new(uri.host, uri.port)
+        request = Net::HTTP::Post.new(uri.request_uri)
+        request.set_form_data(params)
+        response = http.request(request)
+
+
+        puts response.code             # => 200
+        puts response.body             # => The body (HTML, JSON, etc)
+        
         format.html { redirect_to action: :index , api_id: @employe.organisme_id }
         format.json { render :show, status: :created, location: @employe }
       else
@@ -79,6 +98,6 @@ class EmployesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employe_params
-      params.require(:employe).permit(:nom, :prenom, :adresse, :cell, :maison, :bureau, :courriel, :formation, :role, :organisme_id)
+      params.require(:employe).permit(:nom, :prenom, :adresse, :cell, :maison, :bureau, :courriel, :formation, :organisme_id, :role_id)
     end
 end
