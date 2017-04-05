@@ -1,0 +1,8 @@
+<h1>Liste Organismes</h1>
+
+<% @organismes.each do |o| %>
+	<p>
+  		<strong><%= o.nom %></strong>
+  		<%= link_to 'Show', employes_path(:api_id => o.api_id) %>
+ 	</p>
+ <%end%>

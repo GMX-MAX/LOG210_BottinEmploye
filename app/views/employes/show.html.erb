@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @employe.nom %>
+</p>
+
+<p>
+  <strong>Prenom:</strong>
+  <%= @employe.prenom %>
+</p>
+
+<p>
+  <strong>Adresse:</strong>
+  <%= @employe.adresse %>
+</p>
+
+<p>
+  <strong>Cell:</strong>
+  <%= @employe.cell %>
+</p>
+
+<p>
+  <strong>Maison:</strong>
+  <%= @employe.maison %>
+</p>
+
+<p>
+  <strong>Bureau:</strong>
+  <%= @employe.bureau %>
+</p>
+
+<p>
+  <strong>Courriel:</strong>
+  <%= @employe.courriel %>
+</p>
+
+<p>
+  <strong>Formation:</strong>
+  <%= @employe.formation %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= Role.where(:id => @employe.role_id).pluck(:role) %>
+</p>
+
+<p>
+  <strong>Organisme:</strong>
+  <%= Organisme.where(:api_id => @employe.organisme_id).pluck(:nom) %>
+</p>
+
+<%= link_to 'Edit', edit_employe_path(@employe) %> |
+<%= link_to 'Back', employes_path(api_id: @employe.organisme_id) %>

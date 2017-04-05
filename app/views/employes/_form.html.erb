@@ -1,0 +1,56 @@
+<%= form_for(@employe) do |f| %>
+  <% if @employe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employe.errors.count, "error") %> prohibited this employe from being saved:</h2>
+
+      <ul>
+      <% @employe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nom %><br>
+    <%= f.text_field :nom %>
+  </div>
+  <div class="field">
+    <%= f.label :prenom %><br>
+    <%= f.text_field :prenom %>
+  </div>
+  <div class="field">
+    <%= f.label :adresse %><br>
+    <%= f.text_field :adresse %>
+  </div>
+  <div class="field">
+    <%= f.label :cell %><br>
+    <%= f.number_field :cell %>
+  </div>
+  <div class="field">
+    <%= f.label :maison %><br>
+    <%= f.number_field :maison %>
+  </div>
+  <div class="field">
+    <%= f.label :bureau %><br>
+    <%= f.number_field :bureau %>
+  </div>
+  <div class="field">
+    <%= f.label :courriel %><br>
+    <%= f.text_field :courriel %>
+  </div>
+  <div class="field">
+    <%= f.label :formation %><br>
+    <%= f.text_area :formation %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :organisme_id, :value => @api_id %>
+  </div>
+  <div class="field">
+    <%= f.label :role_id %><br>
+    <%= f.collection_select :role_id, Role.all, :id, :role, :include_blank => true %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
