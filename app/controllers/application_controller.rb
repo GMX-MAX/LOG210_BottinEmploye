@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
 
   before_filter :get_user_info
 
+
 	def get_user_info
-   		@user_role = "Directeur"
+   		@user_role = "Coordonnateur"
    		@user_id = "1"
 	end
 end
